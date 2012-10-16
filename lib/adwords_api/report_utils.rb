@@ -196,7 +196,7 @@ module AdwordsApi
     def check_for_errors(response)
       # Check for error in body.
       report_body = response.body
-      if report_body and (@version <= :v201206) and
+      if report_body and (@version.to_s.sub('v', '').to_i <= 201206) and
           ((RUBY_VERSION < '1.9.1') or report_body.valid_encoding?)
         check_for_legacy_error(report_body, response.code)
       end
